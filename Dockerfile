@@ -29,6 +29,7 @@ COPY --from=openjdk:11.0.6-jre-slim-buster /etc/ca-certificates/update.d/docker-
 
 RUN apt-get update \
   && apt-get install --no-install-recommends -y \
+    git \
     jq \
     python3 \
     python3-pip \
@@ -41,4 +42,3 @@ RUN apt-get update \
   && pip3 install 'awscli~=1.18.37'; \
   find "${JAVA_HOME}/lib" -name '*.so' -exec dirname '{}' ';' | sort -u > /etc/ld.so.conf.d/docker-openjdk.conf; \
 	ldconfig
-
